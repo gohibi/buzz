@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+<div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="text-center text-uppercase mb-3">
+                            <b>{% if request.GET.next != '/courier/' %}
+                                Client 
+                                {% else %}
+                                Courier
+                                {% endif %}
+                            </b>
+                        </h4>
+
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form_errors form %}
+                            {% bootstrap_label 'Email' %}
+                            {% bootstrap_field form.username show_label=False placeholder="Email" %}
+                            {% bootstrap_field form.password %}
+
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success" type="button">Connexion</button>
+                            </div>
+                            <p class="mt-4 text-center">
+                                Nouveau sur BuzZakaz ? <a href="/inscription/?next={{ request.GET.next }}"><b>S'inscrire</b></a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+{% endblock %}
