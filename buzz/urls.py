@@ -19,15 +19,26 @@ from django.urls import path,include
 from core import views
 from django.contrib.auth import views as auth_views
 
+from core.customer import views as views_customer
+from core.courier import views as views_courier
+
+urlpatters_customer = [
+    path('',views_customer.home,name="home")
+]
+urlpatters_courier = [
+    path('',views_courier.home,name="home")
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('social_django.urls', namespace='social')),
+    path('',views.home,name="home"),
     
     path('connexion/',auth_views.LoginView.as_view(template_name="signin.html")),
     path('deconnexion/',auth_views.LogoutView.as_view(next_page="/")),
     path('inscription/',views.signup,name="signup"),
     
-    path('',views.home,name="home"),
-    path('client/',views.customer_page,name="customer"),
-    path('courier/',views.courier_page,name="courier")
+   
+    path('client/',include((urlpatters_customer,'client'))),
+    path('courier/',include((urlpatters_courier,'courier')))
 ]
