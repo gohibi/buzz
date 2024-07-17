@@ -21,6 +21,12 @@
                             <p class="mt-4 text-center">
                                 Deja inscrit ? <a href="/connexion/?next={{ request.GET.next }}"><b>Se connecter</b></a>
                             </p>
+                            <hr>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'social:begin' 'facebook' %}?next={{ request.GET.next }}" class="btn btn-outline-success btn-block">
+                                    se connecter avec Facebook
+                                </a>
+                            </div>
                         </form>
                     </div>
                 </div>

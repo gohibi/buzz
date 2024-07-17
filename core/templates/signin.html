@@ -29,6 +29,13 @@
                             <p class="mt-4 text-center">
                                 Nouveau sur BuzZakaz ? <a href="/inscription/?next={{ request.GET.next }}"><b>S'inscrire</b></a>
                             </p>
+                            <hr>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'social:begin' 'facebook' %}?next={{ request.GET.next }}" class="btn btn-outline-success btn-block">
+                                    se connecter avec Facebook
+                                </a>
+                            </div>
+                          
                         </form>
                     </div>
                 </div>

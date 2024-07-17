@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+    
+    
+    'core.apps.CoreConfig',
     'bootstrap5',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -125,3 +130,24 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/connexion/'
 LOGIN_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = "2423431327863087"
+SOCIAL_AUTH_FACEBOOK_SECRET = "bd5077b0e5d11ef3b45e275fae449f49"
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS={
+    'fields':'id , name, email'
+}
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST ="smtp.gmail.com"
+EMAIL_PORT=587
+EMAIL_HOST_USER="zokouandre2022@gmail.com"
+EMAIL_HOST_PASSWORD="dzpdyymhiqrjzgky"
+EMAIL_USE_TLS=True
+DEFAULT_FROM_EMAIL="BuzZakaz <no-reply@buzzakaz.localhost> "
